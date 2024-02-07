@@ -348,7 +348,11 @@ def execution(model, loss, data, store, params):
                 title='Training and Validation Loss')
         ax.legend()
 
-        #fig.savefig(f'/Users/luisi/Library/Mobile Documents/com~apple~CloudDocs/Física/4. TFG/Códigos galácticos/GraficasCNN/{ep}_epochsLearning_curve.pdf')
+        if model == temperatureModel:
+            fig.savefig(f'./Temperatura/plots/{ep}_epochsLearning_curve(temp).pdf')
+            
+        elif model == precipModel:
+            fig.savefig(f'./Precipitacion/plots/{ep}_epochsLearning_curve(precip).pdf')
         
         """
         #save the plot as a PNG image to a memory buffer
