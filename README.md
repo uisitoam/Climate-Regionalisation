@@ -1,1 +1,1 @@
-# Climatic-Regionalization
+# Climate-Regionalization
