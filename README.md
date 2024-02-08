@@ -1,8 +1,8 @@
 # Climate-Regionalization
 
-Aplicación de sistemas de aprendizaje automático para mejorar la regionalización estadística en áreas de orografía compleja. Esta técnica permite mejorar los pobres resultados que dan los modelos climáticos globales en terrenos abruptos o zonas costeras al no considerar características propias. Para esto, se aprovecharán diversas simulaciones dinámicas realizadas por el Grupo de Observación de la Tierra y la Atmósfera de la Universidad de La Laguna para la región de Canarias.
+This project is based on the use of machine learning models to improve the statistical regionalization in areas of complex topography. This techniques aims to enhace the relatively poor performance of global climate models in rugged terrains or coastal aereas, which do not allow for local characteristics. Dynamic simulations executed by The University of La Laguna's Earth and Atmosphere Observation Group will be used for this project.
 
-Se tratará con redes convolucionales para considerar las no linealidades presentes en la descripción de las precipitaciones; estas también muestran buenos resultados para la descripción de temperaturas. Siguiendo esta línea, se realizarán dos modelos similares capaces de describir las variables mencionadas en función de las condiciones sinópticas. 
+Convolutional neural networks will be used in order to take into account the non-linear behavior showed in precipitation description; this networks also yield positive outcomes for describing temperature. Following this approach, two similar models will be developed to describe the mentioned variables based on synoptic condictions.
 
 ## Código
 
