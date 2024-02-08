@@ -6,7 +6,7 @@ Se tratará con redes convolucionales para considerar las no linealidades presen
 
 ## Código
 
-El código se divide en varios archivos:
+Para la ejecución del código se requieren los siguientes módulos: `numpy`, `matplotlib`, `tensorflow`, `scipy`, `netCDF4` y `datetime`. El código se divide en varios archivos:
 - `reader.py`: contiene las funciones necesarias para extraer toda la información útil de los archivos donde se presentan los datos sujetos a estudio.
 - `datafunctions.py`: contiene las funciones necesarias para tratar la información extraída de forma conveniente para posteriormente entrenar los modelos neuronales.
 - `nets.py`: contiene los modelos de temperatura y precipitaciones, así como las funciones de pérdida usadas en cada uno.
