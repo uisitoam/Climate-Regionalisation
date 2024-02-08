@@ -7,4 +7,7 @@ Se tratará con redes convolucionales para considerar las no linealidades presen
 ## Código
 
 El código se divide en varios archivos:
-- \textit{Reader.py}: 
+- `reader.py`: contiene las funciones necesarias para extraer toda la información útil de los archivos donde se presentan los datos sujetos a estudio.
+- `datafunctions.py`: contiene las funciones necesarias para tratar la información extraída de forma conveniente para posteriormente entrenar los modelos neuronales.
+- `nets.py`: contiene los modelos de temperatura y precipitaciones, así como las funciones de pérdida usadas en cada uno.
+- `trainfunctions.py`: contiene las funcion 
