@@ -10,4 +10,8 @@ El código se divide en varios archivos:
 - `reader.py`: contiene las funciones necesarias para extraer toda la información útil de los archivos donde se presentan los datos sujetos a estudio.
 - `datafunctions.py`: contiene las funciones necesarias para tratar la información extraída de forma conveniente para posteriormente entrenar los modelos neuronales.
 - `nets.py`: contiene los modelos de temperatura y precipitaciones, así como las funciones de pérdida usadas en cada uno.
-- `trainfunctions.py`: contiene las funcion 
+- `trainfunctions.py`: contiene las funciones relativas al entrenamiento y predicción de los modelos, así como el cálculo de las métricas usadas para la validación de los propios modelos.
+
+## Resultados 
+
+Ya se irá viendo 
