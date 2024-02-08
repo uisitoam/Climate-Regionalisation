@@ -4,14 +4,15 @@ This project is based on the use of machine learning models to improve the stati
 
 Convolutional neural networks will be used in order to take into account the non-linear behavior showed in precipitation description; this networks also yield positive outcomes for describing temperature. Following this approach, two similar models will be developed to describe the mentioned variables based on synoptic condictions.
 
-## Código
+## Script
 
-Para la ejecución del código se requieren los siguientes módulos: `numpy`, `matplotlib`, `tensorflow`, `scipy`, `netCDF4` y `datetime`. El código se divide en varios archivos:
-- `reader.py`: contiene las funciones necesarias para extraer toda la información útil de los archivos donde se presentan los datos sujetos a estudio.
-- `datafunctions.py`: contiene las funciones necesarias para tratar la información extraída de forma conveniente para posteriormente entrenar los modelos neuronales.
-- `nets.py`: contiene los modelos de temperatura y precipitaciones, así como las funciones de pérdida usadas en cada uno.
-- `trainfunctions.py`: contiene las funciones relativas al entrenamiento y predicción de los modelos, así como el cálculo de las métricas usadas para la validación de los propios modelos.
+The following packages are needed to execute the script: `numpy`, `matplotlib`, `tensorflow`, `scipy`, `netCDF4` and `datetime`. The program is divided into five .py scripts:
+- `reader.py`: contains the required functions to extract the usefull information from the files where the data under study is given.
+- `datafunctions.py`: contains the required functions to manage conveniently the extracted information, then feed to the neural models afterward.
+- `nets.py`: contains the CNN models of temperature and precipitation, along with the loss functions used for each one of them. 
+- `trainfunctions.py`: contains the functions related to training the models and making predictions with them, along with the obtention of some metrics used to validate the models.
+- `main.py`: this is the script where all functions are called and used to obtain the desired results. 
 
-## Resultados 
+## Results
 
-Ya se irá viendo 
+Not yet. 
