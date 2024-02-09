@@ -31,7 +31,7 @@ tMean = [tMeanTFN + 273.15, tMeanTFS + 273.15, tMeanIZ + 273.15, tMeanSC + 273.1
 tempData, tempStore = extractData(era5data, tMean, times, 220)
 
 tempPed, tempMetricas = execution(temperatureModel, gaussianLoss, tempData, 
-                                  tempStore, [3, 50, 64, 2])
+                                  tempStore, [3, 50, 64, 10])
 
 
 #precipitation data 
@@ -40,7 +40,7 @@ precip = [precipTFN - 1, precipTFS - 1, precipIZ - 1, precipSC - 1]
 precipData, precipStore = extractData(era5data, precip, times, -1.1)
 
 precipPred, precipMetricas = execution(precipModel, bernouilliGammaLoss, precipData, 
-                                       precipStore, [3, 50, 64, 2])
+                                       precipStore, [3, 50, 64, 10])
 
 
 
@@ -63,6 +63,13 @@ fig, ax = plt.subplots(1, 2, figsize=(9,5))
 # Creating plot
 bp = ax[0].boxplot(data, labels=tCols)
 bp2 = ax[1].boxplot(data2, labels=pCols)
+
+ax[0].set(title='Temperture')
+ax[0].set_xticklabels(tCols, rotation=45)
+ax[1].set_xticklabels(pCols, rotation=45)
+ax[1].set(title='Precipitation')
+
+fig.savefig('./Resultados/Metrics.pdf')
 
  
 # show plot
