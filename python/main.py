@@ -7,7 +7,7 @@ from nets import temperatureModel, precipModel, gaussianLoss, bernouilliGammaLos
 import matplotlib.pyplot as plt
 
 
-# reading the data files 
+# reading the data files
 dateTFN, tMeanTFN, tMaxTFN, tMinTFN, precipTFN = reader("Datos/TFN.dat")
 dateTFS, tMeanTFS, tMaxTFS, tMinTFS, precipTFS = reader("Datos/TFS.dat")
 dateIZ, tMeanIZ, tMaxIZ, tMinIZ, precipIZ = reader("Datos/Izana.dat")
