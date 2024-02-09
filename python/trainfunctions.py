@@ -349,10 +349,10 @@ def execution(model, loss, data, store, params):
         ax.legend()
 
         if model == temperatureModel:
-            fig.savefig(f'./Temperatura/plots/{ep}_epochsLearning_curve(temp).pdf')
+            fig.savefig(f'./Resultados/Temperatura/plots/{ep}_epochsLearning_curve(temp).pdf')
             
         elif model == precipModel:
-            fig.savefig(f'./Precipitacion/plots/{ep}_epochsLearning_curve(precip).pdf')
+            fig.savefig(f'./Resultados/Precipitacion/plots/{ep}_epochsLearning_curve(precip).pdf')
         
         """
         #save the plot as a PNG image to a memory buffer
