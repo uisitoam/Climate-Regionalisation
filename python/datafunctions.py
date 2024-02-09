@@ -22,8 +22,8 @@ def interpolNsplit(indexes, info, name, samples=None, labels=None, masked=None):
         Labels of the samples. To treat labels, keep samples parameter None. 
         The default is None.
     masked : np.ndarray, optional
-        Mask to apply to samples, following the one applied to the labels (only 
-        for temperature, for precipitation, keep it None). The default is None.
+        Mask to apply to samples, following the one applied to the labels. 
+        The default is None.
 
     Returns
     -------
