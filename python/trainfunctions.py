@@ -84,16 +84,16 @@ def execution(model, loss, data, store, times, params, stochastic = False):
             train_loss += np.array(historial.history['loss'])
             train_val += np.array(historial.history['val_loss'])
             
-            predictions = modelo.predict(data[2])
+            preds = modelo.predict(data[2])
+            predictions = preds[:, :int(np.shape(preds)[1]/2)]
             
             denormalized_predictions =  np.interp(predictions, (0, 1), 
                                                   (store['labels(t)'][0], 
                                                    store['labels(t)'][1]))
             
             res += denormalized_predictions
-            
-            coefs += coeficientes(denormalized_predictions[:, :np.shape(predLabelsDen)[1]], 
-                                 predLabelsDen, times[1], 'temperature')
+            coefs += coeficientes(denormalized_predictions, predLabelsDen, 
+                                  times[1], 'temperature')
         
 
     elif model == precipModel:
@@ -113,7 +113,8 @@ def execution(model, loss, data, store, times, params, stochastic = False):
                                            predictions, stochastic)
             
             res += precipAmount
-            coefs += coeficientes(precipAmount, predLabelsDen, times[1], 'precipitation')
+            coefs += coeficientes(precipAmount, predLabelsDen, 
+                                  times[1], 'precipitation')
             
 
     metricas = coefs/params[2]
