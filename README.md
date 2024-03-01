@@ -10,7 +10,7 @@ The following packages are needed to execute the script: `numpy`, `matplotlib`, 
 - `reader.py`: contains the required functions to extract the usefull information from the files where the data under study is given.
 - `datafunctions.py`: contains the required functions to manage conveniently the extracted information, then feed to the neural models afterward. It also contains functions to obtain some metrics used to validate the model, along with a function to compute the rainfall amount based on the paramaters of a gamma-Bernouilli distribution given by the precipitation net. 
 - `nets.py`: contains the CNN models of temperature and precipitation, along with the loss functions used for each one of them. 
-- `trainfunctions.py`: contains the functions related to training the models and making predictions with them, along with the obtention of some metrics used to validate the models.
+- `trainfunctions.py`: contains the functions related to making predictions with the models, along with the obtention of some metrics used to validate the models.
 - `plots.py`: contains the functions used to make the different plots showing the results of the model. 
 - `main.py`: this is the script where all functions are called and used to obtain the desired results. 
 
