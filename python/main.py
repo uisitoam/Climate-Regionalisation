@@ -1,6 +1,6 @@
 import numpy as np 
 import time as timeMod
-from bot import bot_texter, timecalc
+from bot import timecalc
 from reader import reader
 from datafunctions import extractData
 from trainfunctions import execution
