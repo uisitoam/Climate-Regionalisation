@@ -53,7 +53,7 @@ def learningCurve(ejey, ep, savePath):
     if savePath: # Validate directory or file path
     
         try:
-            with open(savePath, 'x') as f:
+            with open(savePath, 'x') as _:
                 pass  # Create an empty file to indicate write permission
                 
         except PermissionError:
@@ -163,7 +163,7 @@ def boxplots(metrics, metricLabels, params):
                         hspace=0.2, wspace=0.2)
     
     try:
-        with open(params[1], 'x') as f:
+        with open(params[1], 'x') as _:
             pass  # Create an empty file to indicate write permission
     
     except PermissionError:
@@ -314,7 +314,7 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
     of overwriting an existing one.
     """
     try:
-        with open(savePath, 'x') as f: 
+        with open(savePath, 'x') as _: 
             pass  # Create an empty file to indicate write permission
     
     except PermissionError:
