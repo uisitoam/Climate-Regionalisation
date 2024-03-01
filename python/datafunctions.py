@@ -467,11 +467,3 @@ def computeRainfall(trainData, predResults, simulate = False):
     rainAmount = np.where(prob < cota, 0, amountData) #(condicion, True, False)
         
     return rainAmount
-
-
-
-
-
-    
-    
-    
