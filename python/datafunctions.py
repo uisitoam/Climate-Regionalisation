@@ -1,7 +1,6 @@
 import numpy as np
 from scipy.stats import spearmanr, gamma
 import tensorflow as tf
-from bot import bot_texter
 
 
 def interpolNsplit(indexes, info, name, samples=None, labels=None):
@@ -143,10 +142,10 @@ def extractData(era5, labs, times, var):
     Raises:
     ------
     ValueError:
-        - If any parameter has an invalid type or value.
+        - If any parameter has an invalid value.
         - If `times` length is not 3.
     TypeError:
-        - If any parameter is not a NumPy array.
+        - If any parameter has an invalid type.
         
     Returns:
     -------
@@ -235,8 +234,7 @@ def coeficientes(predict, labels, times, var):
     ValueError
         If `var` is not "temperature" or "precipitation".
     TypeError
-        - If `predict` or `labels` is not a NumPy array.
-        - If `times` is not a list of strings.
+        - If any parameter has an invalid type.
 
     Returns
     -------
@@ -286,12 +284,11 @@ def coeficientes(predict, labels, times, var):
         Raises
         ------
         TypeError
-            arr must be a np.ndarray, times must be a list and cota must be a 
-            positive number between 0 and 100.
+            - If any parameter has an invalid type.
         ValueError
-            cota must be a positive number between 0 and 100.
+            - If cota is not a positive number between 0 and 100.
         KeyError
-            It will raise if the year key doesn't exist yet (first encounter). 
+            - If the year key doesn't exist yet (first encounter). 
             An except block catches the KeyError and initializes a new list 
             for the encountered year in the dictionary.
 
@@ -421,9 +418,9 @@ def computeRainfall(trainData, predResults, simulate = False):
     Raises
     ------
     ValueError
-        - If `trainData` or `predResults` has incorrect shapes or data types.
+        - If `trainData` or `predResults` has invalid shapes.
     TypeError
-        - If elements in `trainData` or `predResults` are not NumPy arrays.
+        - If any parameter has an invalid type.
 
     Returns
     -------
