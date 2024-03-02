@@ -81,6 +81,7 @@ def execution(model, loss, data, store, times, params, stochastic = False):
         for i in range(params[2]):
             modelo, historial = model(data[0], data1, loss, params[:2])
             
+            
             train_loss += np.array(historial.history['loss'])
             train_val += np.array(historial.history['val_loss'])
             
@@ -94,7 +95,6 @@ def execution(model, loss, data, store, times, params, stochastic = False):
             res += denormalized_predictions
             coefs += coeficientes(denormalized_predictions, predLabelsDen, 
                                   times[1], 'temperature')
-        
 
     elif model == precipModel:
         predLabelsDen = data3
@@ -153,4 +153,3 @@ def execution(model, loss, data, store, times, params, stochastic = False):
                       f'./Resultados/Precipitacion/plots/{params[0]}_epochsLearning_curve(precip).pdf')
     
     return predicts, metricas
-    
