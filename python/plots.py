@@ -293,7 +293,7 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
     
     colorMap, savePath = params
     data1 = np.reshape(data, (dataDim[0], dataDim[1], dataDim[2]))
-    if 'metrics' in savePath:
+    if 'Metrics' in savePath:
         data2 = data1[time[1], :, :]
         
     else:
@@ -315,14 +315,20 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
         
         ax.add_feature(ocean, zorder=100, edgecolor='k')
     
-    if 'metrics' in savePath:
+    if 'tempMetrics' in savePath:
         plt.colorbar(im, shrink=0.5, format='%.2f', cmap=colorMap)
+        tCols = ['Mean Bias', 'P2 Bias', 'P98 Bias', 'R (Pearson)', 'std Ratio', 'RMSE', 'Bias WAMS', 'Bias CAMS']
+        plt.title(f'{tCols[time[1]]}')
+    
+    elif 'precipMetrics' in savePath:
+        plt.colorbar(im, shrink=0.5, format='%.2f', cmap=colorMap)
+        pCols = ['Mean Bias', 'P98 Bias', 'R (Spearman)', 'RMSE (Wet days)', 'Bias WetAMS', 'Bias_DryAMS']
+        plt.title(f'{pCols[time[1]]}')
     
     else:
         plt.colorbar(im, shrink=0.5, format='%.0f', cmap=colorMap)
+        plt.title(f'{str(time[1])[-2:]}/{str(time[1])[-4:-2]}/{str(time[1])[:4]}')
     
-    plt.title(f'{time[1][-2:]}/{time[1][-4:-2]}/{time[1][:4]}')
-
     plt.tight_layout()
     
     plt.show()
@@ -429,7 +435,7 @@ def animation(data, lim, var, times, frames):
     height, width, _ = images[0].shape
     size = (width, height)
     
-    out = cv2.VideoWriter(videoName, cv2.VideoWriter_fourcc(*'mp4v'), 30, size)
+    out = cv2.VideoWriter(videoName, cv2.VideoWriter_fourcc(*'mp4v'), 10, size)
     for image in images:
         out.write(image)
         
