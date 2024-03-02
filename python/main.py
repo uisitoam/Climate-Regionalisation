@@ -33,7 +33,7 @@ era5data = [z, q, t, u, v]
 start2 = timeMod.time()
 
 # temperature data (in Kelvin)
-tempParams = [3, 128, 1]
+tempParams = [60, 128, 5]
 tempData, tempStore, tempTime = extractData(era5data, tMean, times, "Temperature")
 
 # temperature results
@@ -72,7 +72,7 @@ for i in range(len(tCols)):
 start3 = timeMod.time()
 
 #precipitation data 
-precipParams = [3, 128, 1]
+precipParams = [120, 128, 5]
 precipData, precipStore, precipTime = extractData(era5data, precip - 1, times, "Precipitation")
 
 # precipitation results
