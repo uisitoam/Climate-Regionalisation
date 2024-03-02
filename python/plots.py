@@ -301,16 +301,6 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
             
         data2 = data1[time[0].index(time[1]), :, :]
     
-        
-
-    
-    
-    if 'Metrics' in savePath:
-        data2 = data1[time[1], :, :]
-        
-    else:
-        data2 = data1[time[0].index(time[1]), :, :]
-    
     fig = plt.figure(figsize=(9, 5))
     ax = plt.axes(projection=ccrs.PlateCarree())
     ax.coastlines(resolution='10m', color='black', linewidth=1)
