@@ -22,7 +22,7 @@ fin1 = timeMod.time()
 timecalc(start1, fin1, 'Tiempo en leer los archivos', True)
 
 
-times = [time, time.index('19900101'), time.index('20001231')]
+times = [time, time.index('20100101'), time.index('20191231')]
 
 era5data = [z, q, t, u, v]
 
@@ -33,7 +33,7 @@ era5data = [z, q, t, u, v]
 start2 = timeMod.time()
 
 # temperature data (in Kelvin)
-tempParams = [60, 128, 5]
+tempParams = [60, 128, 6]
 tempData, tempStore, tempTime = extractData(era5data, tMean, times, "Temperature")
 
 # temperature results
@@ -41,7 +41,7 @@ tempPred, tempMetricas = execution(temperatureModel, gaussianLoss, tempData,
                                   tempStore, tempTime, tempParams)
 
 fin2 = timeMod.time()
-timecalc(start2, fin2, 'Tiempo para el modelo de temperatura (60 epochs, batch size de 128 y 5 repeticiones)', True)
+timecalc(start2, fin2, 'Tiempo para el modelo de temperatura (60 epochs, batch size de 128 y 6 repeticiones)', True)
 
 # temperature boxplot
 tCols = ['Mean Bias', 'P2 Bias', 'P98 Bias', 'R (Pearson)', 'std Ratio', 'RMSE', 'Bias WAMS', 'Bias CAMS']
@@ -50,12 +50,12 @@ boxplots(tempMetricas, tCols,
          ['Temperature', f'./Resultados/Temperatura/plots/{tempParams[0]}_epochsTempMetrics.pdf'])
 
 # temperature map and animation
-mapeo(tempPred, [np.shape(tempPred)[0], 68, 158], 
+mapeo(tempPred - 273.15, [np.shape(tempPred)[0], 68, 158], 
       [np.min(tLong), np.max(tLong), np.min(tLat), np.max(tLat)], 
       [get_colormap('t'), './Resultados/Temperatura/plots/temperatureMap.pdf'], 
-      [tempTime[1], '20000307'])
+      [tempTime[1], '20100307'])
 
-animation(tempPred, [np.min(tLong), np.max(tLong), np.min(tLat), np.max(tLat)], 
+animation(tempPred - 273.15, [np.min(tLong), np.max(tLong), np.min(tLat), np.max(tLat)], 
           't', tempTime[1], 365)
 
 # temperature metrics maps
@@ -72,7 +72,7 @@ for i in range(len(tCols)):
 start3 = timeMod.time()
 
 #precipitation data 
-precipParams = [120, 128, 5]
+precipParams = [120, 128, 6]
 precipData, precipStore, precipTime = extractData(era5data, precip - 1, times, "Precipitation")
 
 # precipitation results
@@ -81,7 +81,7 @@ precipPred, precipMetricas = execution(precipModel, bernouilliGammaLoss,
                                        precipParams)
 
 fin3 = timeMod.time()
-timecalc(start3, fin3, 'Tiempo para el modelo de precipitaciones determinista (120 epochs, batch size de 128 y 5 repeticiones)', True)
+timecalc(start3, fin3, 'Tiempo para el modelo de precipitaciones determinista (120 epochs, batch size de 128 y 6 repeticiones)', True)
 
 # precipitation boxplot
 pCols = ['Mean Bias', 'P98 Bias', 'R (Spearman)', 'RMSE (Wet days)', 'Bias WetAMS', 'Bias_DryAMS']
