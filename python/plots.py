@@ -1,9 +1,11 @@
+import cv2
+import os
+import glob
 import numpy as np 
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 import cartopy.feature as cpf
 import cartopy.crs as ccrs
-from nets import temperatureModel, precipModel
 
 colores = ['#FF0000', '#FF9B00', '#F5DE00', '#51FF53', '#00A902', '#00FF8F', 
            '#00F5E6', '#00B2FF', '#0032FF', '#B900FF', '#8700FF', '#FF86F6', 
@@ -172,7 +174,7 @@ def boxplots(metrics, metricLabels, params):
     except FileNotFoundError:
         raise FileNotFoundError(f"Save path '{params[1]}' not found.")
 
-    fig.savefig(params[1])
+    fig.savefig(params[1], bbox_inches='tight')
     
     return 
 
@@ -187,12 +189,13 @@ def get_colormap(var):
     Parameters
     ----------
     var : str
-        Must be `t` for Temperture and `p` for Precipitation.
+        Must be `t` for Temperture and `p` for Precipitation, 
+        'tm' for temperature metrics and 'pm' for precipitation metrics.
 
     Raises
     ------
     TypeError
-        If var is not 't' or 'p'.
+        If var is not 't', 'tm', 'p' or 'pm'.
 
     Returns
     -------
@@ -200,21 +203,23 @@ def get_colormap(var):
 
     """
     
-    if var not in ('t', 'p'):
-        raise TypeError("Variable must be 't' for temperature or 'p' for precipitation.")
+    if var not in ('t', 'p', 'tm', 'pm'):
+        raise TypeError("Variable must be 't' or 'tm' for temperature or 'p' or 'pm' for precipitation.")
     
     colormaps = {'t': [(0.5, 0.0, 0.5), (0.2, 0.0, 0.4), (0.0, 0.0, 1.0), 
                        (0.0, 0.8, 1.0), (0.0, 1.0, 0.0), (1.0, 1.0, 0.0),
                        (1.0, 0.5, 0.0), (1.0, 0.0, 0.0), (0.1, 0.0, 0.0)], 
                  'p': [(1.0, 1.0, 1.0), (0.8, 0.9, 1.0), (0.6, 0.8, 1.0), 
                        (0.4, 0.7, 1.0), (0.2, 0.5, 1.0), (0.0, 0.3, 0.8), 
-                       (0.0, 0.1, 0.6), (0.0, 0.0, 0.2)]
-                 }
+                       (0.0, 0.1, 0.6), (0.0, 0.0, 0.2)],
+                 'tm': 'OrRd', 'pm': 'BrBG'}
+    if var == 't' or var == 'p':
+        return LinearSegmentedColormap.from_list("full_spectrum", colormaps[var])
     
-    return LinearSegmentedColormap.from_list("full_spectrum", colormaps[var])
+    else: 
+        return colormaps[var]
 
     
-
 
 
 
@@ -270,25 +275,29 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
     if not isinstance(dataDim, list) or len(dataDim) != 3 or not all(isinstance(i, int) for i in dataDim):
         raise ValueError("dataDim must be a list of three integers.")
   
-    if not isinstance(dataExt, list) or len(dataExt) != 4 or not all(isinstance(i, (int, float)) for i in dataExt):
-        raise TypeError("dataExt must be a list of 4 numbers (int or floats).")
+    if not isinstance(dataExt, list) or len(dataExt) != 4 or not all(isinstance(i, np.float32) for i in dataExt):
+        raise TypeError("dataExt must be a list of 4 floats.")
   
     if not isinstance(params, list) or len(params) != 2:
         raise TypeError("Params must be a tuple of length 2 containing (colormap, save path).")
-        
+    """    
     if not isinstance(time, list) or len(time) != 2:
         raise TypeError("time must be a list containing (Dates, given date)")
-        
-    if int(time[1]) < int(time[0][0]) or time[1] > int(time[0][-1]):
+      
+    if int(time[1]) < int(time[0][0]) or int(time[1]) > int(time[0][-1]):
         raise TypeError(f'Date must be contain between {int(time[0][0])} and {int(time[0][-1])}.')
     
     if time[1] not in time[0]:
         raise TypeError(f'Not available data for {int(time[1])}.')
-
+    """
     
     colorMap, savePath = params
-    data = np.reshape(data, (dataDim[0], dataDim[1], dataDim[2]))
-    data = data[time[0].index(time[1]), :, :]
+    data1 = np.reshape(data, (dataDim[0], dataDim[1], dataDim[2]))
+    if 'metrics' in savePath:
+        data2 = data1[time[1], :, :]
+        
+    else:
+        data2 = data1[time[0].index(time[1]), :, :]
     
     fig = plt.figure(figsize=(9, 5))
     ax = plt.axes(projection=ccrs.PlateCarree())
@@ -298,8 +307,7 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
     if not imgExt:
         imgExt = dataExt
         
-    #img_extent = [np.min(lons), np.max(lons), np.min(lats), np.max(lats)]
-    im = ax.imshow(data[:, :], extent=imgExt, cmap=colorMap)
+    im = ax.imshow(data2[:, :], extent=imgExt, cmap=colorMap)
     
     if seamask:
         ocean = cpf.NaturalEarthFeature(category= 'physical', 
@@ -307,7 +315,18 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
         
         ax.add_feature(ocean, zorder=100, edgecolor='k')
     
-    plt.colorbar(im, shrink=0.5, format='%.0f', cmap=colorMap)
+    if 'metrics' in savePath:
+        plt.colorbar(im, shrink=0.5, format='%.2f', cmap=colorMap)
+    
+    else:
+        plt.colorbar(im, shrink=0.5, format='%.0f', cmap=colorMap)
+    
+    plt.title(f'{time[1][-2:]}/{time[1][-4:-2]}/{time[1][:4]}')
+
+    plt.tight_layout()
+    
+    plt.show()
+    plt.close()
     
     """
     Ensures that the file is ready to be written without the risk 
@@ -323,7 +342,7 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
     except FileNotFoundError:
         raise FileNotFoundError(f"Save path '{savePath}' not found.")
 
-    fig.savefig(savePath)
+    fig.savefig(savePath, bbox_inches='tight')
 
     return 
 
@@ -331,5 +350,87 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
 
 
 
+def animation(data, lim, var, times, frames):
+    """
+    Make a video of the evolution of a magnitude from maps over a certain 
+    period of time.
 
+    Parameters
+    ----------
+    data : np.ndarray
+        Data of the magnitude being presented. 
+    lim : list
+        Minimum and maximum latitude and longitude with data available.
+    var : str
+        't' for temperature or 'p' for precipitation.
+    times : list
+        Dates with available data.
+    frames : int
+        Number of frames throughout the entire video.
+        
+    Raises
+    ------
+    TypeError
+        If any parameter has an unexpected type.
+    ValueError
+        - If lim does not have the four coordinates needed.
+        - If var is not 't' or 'p'.
+        - If the number of frames is greater than the number of days available.
 
+    Returns
+    -------
+    Animation as a .mp4 file.
+
+    """
+    
+    # Validate input data
+    if not isinstance(data, np.ndarray):
+        raise TypeError("data must be a NumPy array")
+      
+    if not isinstance(lim, list) or len(lim) != 4:
+        raise ValueError("lim must be a list with 4 coordinates (min and max latitude and longitude)")
+        
+    if var not in ['t', 'p']:
+        raise ValueError("var must be 't' for temperature or 'p' for precipitation")
+        
+    if not isinstance(times, list) or not all(isinstance(i, str) for i in times):
+        raise TypeError("times must be a list of strings containing the dates of the data collected")
+        
+    if not isinstance(frames, int) or len(times) < frames:
+        raise ValueError("The number of frames must be an integer lower than the number of dates with available information")
+
+        
+    if var == 't':
+        for i in range(frames):
+            mapeo(data, [np.shape(data)[0], 68, 158] ,lim, 
+                  [get_colormap(var), f'./Resultados/Temperatura/plots/anim/temperatureMap({i}).jpg'], 
+                  [times, times[i]])
+
+        imageFolder = './Resultados/Temperatura/plots/anim'
+        videoName = './Resultados/Temperatura/plots/temperatureDist.mp4'
+        
+    else:
+        for i in range(frames):
+            mapeo(data, [np.shape(data)[0], 68, 158] ,lim, 
+                  [get_colormap(var), f'./Resultados/Precipitacion/plots/anim/precipitationMap({i}).jpg'], 
+                  [times, times[i]])
+            
+        imageFolder = './Resultados/Precipitacion/plots/anim'
+        videoName = './Resultados/Precipitacion/plots/precipitationDist.mp4'
+        
+    images = [0] * frames
+    for i, filename in enumerate(glob.glob(os.path.join(imageFolder, '*.jpg'))):
+        try:
+            images[i] = cv2.imread(filename)
+            
+        except (cv2.error, FileNotFoundError) as error: # possible missing image
+            print(f"Error reading image {filename}: {error}")
+        
+    height, width, _ = images[0].shape
+    size = (width, height)
+    
+    out = cv2.VideoWriter(videoName, cv2.VideoWriter_fourcc(*'mp4v'), 30, size)
+    for image in images:
+        out.write(image)
+        
+    out.release()
