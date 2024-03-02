@@ -279,19 +279,32 @@ def mapeo(data, dataDim, dataExt, params, time, seamask=False, imgExt=None):
   
     if not isinstance(params, list) or len(params) != 2:
         raise TypeError("Params must be a tuple of length 2 containing (colormap, save path).")
-    """    
+        
     if not isinstance(time, list) or len(time) != 2:
-        raise TypeError("time must be a list containing (Dates, given date)")
-      
-    if int(time[1]) < int(time[0][0]) or int(time[1]) > int(time[0][-1]):
-        raise TypeError(f'Date must be contain between {int(time[0][0])} and {int(time[0][-1])}.')
-    
-    if time[1] not in time[0]:
-        raise TypeError(f'Not available data for {int(time[1])}.')
-    """
+        raise TypeError("time must be a list of two elements")
     
     colorMap, savePath = params
     data1 = np.reshape(data, (dataDim[0], dataDim[1], dataDim[2]))
+    
+    if 'Metrics' in savePath:
+        data2 = data1[time[1], :, :]
+        
+    else:
+        if not isinstance(time, list) or len(time) != 2:
+            raise TypeError("time must be a list containing (Dates, given date)")
+          
+        if int(time[1]) < int(time[0][0]) or int(time[1]) > int(time[0][-1]):
+            raise TypeError(f'Date must be contain between {int(time[0][0])} and {int(time[0][-1])}.')
+        
+        if time[1] not in time[0]:
+            raise TypeError(f'Not available data for {int(time[1])}.')
+            
+        data2 = data1[time[0].index(time[1]), :, :]
+    
+        
+
+    
+    
     if 'Metrics' in savePath:
         data2 = data1[time[1], :, :]
         
