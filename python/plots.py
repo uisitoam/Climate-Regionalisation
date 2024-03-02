@@ -53,7 +53,6 @@ def learningCurve(ejey, ep, savePath):
     ax.legend()
     
     if savePath: # Validate directory or file path
-    
         try:
             with open(savePath, 'x') as _:
                 pass  # Create an empty file to indicate write permission
