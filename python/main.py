@@ -1,6 +1,6 @@
 import numpy as np 
 import time as timeMod
-from bot import timecalc, bot_texter, printeo
+from bot import timecalc, printeo
 from reader import reader
 from datafunctions import extractData, unmask, extractMask
 from trainfunctions import execution
@@ -23,7 +23,7 @@ times = [time, time.index('20100101'), time.index('20191231')]
 era5data = [z, q, t, u, v]
 
 
-"""
+
 # TEMPERATURE
 tempParams = [500, 128, 5]
 
@@ -36,8 +36,7 @@ tempPred, tempMetricas = execution(temperatureModel, gaussianLoss, tempData,
                                   tempStore, tempTime, tempParams)
 
 fin2 = timeMod.time()
-timecalc(start2, fin2, f'Tiempo para el modelo de temperatura ({tempParams[0]} epochs, batch size de {tempParams[1]} y {tempParams[2]} repeticiones)', True)
-bot_texter(f'Medianas: {np.median(tempMetricas, axis=1)}')
+timecalc(start2, fin2, f'Tiempo para el modelo de temperatura ({tempParams[0]} epochs, batch size de {tempParams[1]} y {tempParams[2]} repeticiones)')
 
 # temperature boxplot
 tCols = ['Mean Bias', 'P2 Bias', 'P98 Bias', 'R (Pearson)', 'std Ratio', 'RMSE', 'Bias WAMS', 'Bias CAMS']
@@ -55,7 +54,7 @@ for i in range(len(tCols)):
       [np.min(tLong), np.max(tLong), np.min(tLat), np.max(tLat)], 
       [get_colormap('tm'), f'./Resultados/Temperatura/plots/tempMetricsMap{i}.pdf'], 
       [0, i])
-"""
+
 
 
 # PRECIPITATION
@@ -65,8 +64,6 @@ precipParams = [100, 16, 4]
 precipData, precipStore, precipTime = extractData(era5data, precip - 1, times, "Precipitation")
 precipData2 = [precipData[0], extractMask(precip2[:times[1]]), precipData[2], extractMask(precip2[times[1]:])]
 
-
-
 # precipitation results (using only values over the islands)
 start4 = timeMod.time()
 precipPred, precipMetricas = execution(precipModel, bernouilliGammaLoss, 
@@ -74,9 +71,7 @@ precipPred, precipMetricas = execution(precipModel, bernouilliGammaLoss,
                                        precipParams)
 
 fin4 = timeMod.time()
-timecalc(start4, fin4, f'Tiempo para el modelo de precipitaciones ({precipParams[0]} epochs, batch size de {precipParams[1]} y {precipParams[2]} repeticiones)', True)
-
-bot_texter(f'Medianas: {np.median(precipMetricas, axis=1)}')
+timecalc(start4, fin4, f'Tiempo para el modelo de precipitaciones ({precipParams[0]} epochs, batch size de {precipParams[1]} y {precipParams[2]} repeticiones)')
 
 # fill the complete grid with predicted values for islands
 precipData3 = np.reshape(precipData[3], (np.shape(precipData[3])[0], 68*158))
