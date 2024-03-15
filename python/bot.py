@@ -6,9 +6,9 @@ import sys
 
 def bot_texter(bot_message, file_data=None, file_name=None, data=None, dataframe=None, name=None):
     
-    try:
-        bot_token = '6284133570:AAEAT9T74vaNFiJrY-wPdXgZD3Js3smMOI0'
-        bot_chatID = '1018886244'
+    try:             
+        bot_token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+        bot_chatID = '0123456789'
 
         if file_data is not None and file_name is not None: #send a picture
             send_file = 'https://api.telegram.org/bot' + bot_token + '/sendDocument?chat_id=' + bot_chatID
