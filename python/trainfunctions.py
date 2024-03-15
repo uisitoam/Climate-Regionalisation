@@ -1,5 +1,4 @@
 import numpy as np
-from bot import bot_texter
 from nets import temperatureModel, precipModel
 from datafunctions import coeficientes, computeRainfall
 from plots import learningCurve
@@ -134,8 +133,6 @@ def execution(model, loss, data, store, times, params, stochastic = False):
     stds = np.std(allMeans, axis=0)
     training_loss = train_loss/params[2]
     training_val = train_val/params[2]
-
-    bot_texter(f'Std: {stds}')
     
     if model == precipModel:
             precipProb = predProb/params[2] 
