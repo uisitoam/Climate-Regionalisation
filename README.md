@@ -16,4 +16,4 @@ The following packages are needed to execute the script: `numpy`, `matplotlib`, 
 
 ## Results
 
-Only learning curve of the models and a boxplot of certain metrics. The results from 6 runs for each starting point are averaged. Then, the average values from all the starting points (in this case, 3: TFN, IZ, SC) are plotted in a boxplot to visualize the overall performance of each model.
+On the one hand, the plots with the results for temperature and precipitation are included. On the other hand, the trained Keras models from which the results are derived are attached. In addition, in the case of precipitation, another folder is provided with the probabilities of occurrence data obtained during training, which are necessary to make predictions about the amount of rainfall.
