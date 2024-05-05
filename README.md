@@ -17,6 +17,6 @@ There is also a `bot.py` script not provided here. It is just a telegram bot dev
 
 ## Results
 
-On the one hand, the plots with the results for temperature and precipitation are included. On the other hand, the trained Keras models from which the results are derived are attached. In addition, in the case of precipitation, another folder is provided with the probabilities of occurrence data obtained during training, which are necessary to make predictions about the amount of rainfall. \\
+On the one hand, the plots with the results for temperature and precipitation are included. On the other hand, the trained Keras models from which the results are derived are attached. In addition, in the case of precipitation, another folder is provided with the probabilities of occurrence data obtained during training, which are necessary to make predictions about the amount of rainfall. 
 
 The complete break down of all the data and methods used, along with the analysis of the results are show in the `main.pdf` file.
