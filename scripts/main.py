@@ -6,7 +6,7 @@ from datafunctions import preprocess_data, reMap
 from trainfunctions import entrenamiento, predicciones
 from tensorflow import keras
 from nets import temperatureModel, precipModel, gaussianLoss, bernouilliGammaLoss
-from plotsFEO import boxplots, mapeo, animation, comparacion, big_boxplot, boxplots_same
+from plots import boxplots, mapeo, animation, comparacion, big_boxplot
 
 
 
