@@ -15,7 +15,8 @@ The following packages are needed to execute the script: `numpy`, `matplotlib`, 
 - `trainfunctions.py`: contains the functions related to train and making predictions with the models, along with the obtention of some metrics used to validate the models.
 - `plots.py`: contains the functions used to make the different plots showing the results of the model. 
 - `main.py`: this is the script where all functions are called and used to obtain the desired results.
-There is also a `bot.py` script not provided here. It is just a telegram bot developed to shown execution time along with some metrics. It also contains a function for "pretty print". Not necessary for the execution.  
+
+There is also a `bot.py` script. It is just a telegram bot developed to shown execution time along with some metrics. It also contains a function for "pretty print". Not necessary for the execution.  
 
 ## Results
 
