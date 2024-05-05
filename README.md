@@ -1,8 +1,10 @@
 # Climate-Regionalization
 
-This project is based on the use of machine learning models to improve the statistical regionalization in areas of complex topography. This technique aims to enhance the relatively poor performance of global climate models in rugged terrains or coastal areas, which do not account for local characteristics. Dynamic simulations executed by The University of La Laguna's Earth and Atmosphere Observation Group will be used for this project.
+This project is based on the use of machine learning models to improve the statistical regionalization in areas of complex topography. This technique aims to enhance the relatively poor performance of global climate models in rugged terrains or coastal areas, which do not account for local characteristics. Dynamic simulations executed by The University of La Laguna's Earth and Atmosphere Observation Group will be used for this project in an attempt to emulate them with the developed models.
 
 Convolutional neural networks will be used in order to take into account the non-linear behavior showed in precipitation description; this networks also yield positive outcomes for describing temperature. Following this approach, two similar models will be developed to describe the mentioned variables based on synoptic condictions.
+
+Models will be trained with Era 5 reanalysis data, using 5 predictors at 3 different pressure levels. Using only land data for this purpose (rather than land and sea data) has shown better results in this particular study. Predictions are obtained using Era 5 reanalysis data, along with 3 different GCMs: GFDL, IPSL and MIROC. Moreover, future predictions are made with data from these three models, for the periods 2030-2059 and 2070-2099. 
 
 ## Script
 
@@ -17,6 +19,8 @@ There is also a `bot.py` script not provided here. It is just a telegram bot dev
 
 ## Results
 
-On the one hand, the plots with the results for temperature and precipitation are included. On the other hand, the trained Keras models from which the results are derived are attached. In addition, in the case of precipitation, another folder is provided with the probabilities of occurrence data obtained during training, which are necessary to make predictions about the amount of rainfall. 
+On the one hand, the plots with the results for temperature and precipitation are included. There are boxplots showing the metrics evaluated, as well as comparisons of these for the different models used for prediction. Maps showing the distribution of values of these indicators over the studied territory are also provided. Finally, comparative graphs of the mean temperature (precipitation amount) predicted by each model are shown, comparing the predictions of the GOTA WRF and the convolutional networks developed in this work (CNN) until the end of the century.
+
+On the other hand, the trained Keras models from which the results are derived are attached. In addition, in the case of precipitation, another folder is provided with the probabilities of occurrence data obtained during training, which are necessary to make predictions about the amount of rainfall. 
 
 The complete break down of all the data and methods used, along with the analysis of the results are show in the `main.pdf` file.
