@@ -24,27 +24,6 @@ precipTimeWRF2, precipWRF2 = rd.reader("Datos/WRF/data_plcwrf_pr_1982_2019_maske
 tempTime_1980_2009, tempTime_2030_2059, tempTime_2070_2099 = rd.timeGFDL1_temp, rd.timeGFDL2_temp, rd.timeGFDL3_temp # (10571,), (10814,), (10886,)
 precipTime_1980_2009, precipTime_2030_2059, precipTime_2070_2099 = rd.timeGFDL1_precip, rd.timeGFDL2_precip, rd.timeGFDL3_precip # (10231,), (9445,), (10895,)
 
-zGFDL1_temp, qGFDL1_temp, tGFDL1_temp, uGFDL1_temp, vGFDL1_temp = rd.zGFDL1_temp, rd.qGFDL1_temp, rd.tGFDL1_temp, rd.uGFDL1_temp, rd.vGFDL1_temp # (10570, 3, 10, 17), ...
-zGFDL1_precip, qGFDL1_precip, tGFDL1_precip, uGFDL1_precip, vGFDL1_precip = rd.zGFDL1_precip, rd.qGFDL1_precip, rd.tGFDL1_precip, rd.uGFDL1_precip, rd.vGFDL1_precip # (10230, 3, 10, 17), ...
-zGFDL2_temp, qGFDL2_temp, tGFDL2_temp, uGFDL2_temp, vGFDL2_temp = rd.zGFDL2_temp, rd.qGFDL2_temp, rd.tGFDL2_temp, rd.uGFDL2_temp, rd.vGFDL2_temp # (10813, 3, 10, 17), ...
-zGFDL2_precip, qGFDL2_precip, tGFDL2_precip, uGFDL2_precip, vGFDL2_precip = rd.zGFDL2_precip, rd.qGFDL2_precip, rd.tGFDL2_precip, rd.uGFDL2_precip, rd.vGFDL2_precip # (9444, 3, 10, 17), ...
-zGFDL3_temp, qGFDL3_temp, tGFDL3_temp, uGFDL3_temp, vGFDL3_temp = rd.zGFDL3_temp, rd.qGFDL3_temp, rd.tGFDL3_temp, rd.uGFDL3_temp, rd.vGFDL3_temp # (10885, 3, 10, 17), ...
-zGFDL3_precip, qGFDL3_precip, tGFDL3_precip, uGFDL3_precip, vGFDL3_precip = rd.zGFDL3_precip, rd.qGFDL3_precip, rd.tGFDL3_precip, rd.uGFDL3_precip, rd.vGFDL3_precip # (10894, 3, 10, 17), ...
-
-zIPSL1_temp, qIPSL1_temp, tIPSL1_temp, uIPSL1_temp, vIPSL1_temp = rd.zIPSL1_temp, rd.qIPSL1_temp, rd.tIPSL1_temp, rd.uIPSL1_temp, rd.vIPSL1_temp # (10570, 3, 10, 17), ...
-zIPSL1_precip, qIPSL1_precip, tIPSL1_precip, uIPSL1_precip, vIPSL1_precip = rd.zIPSL1_precip, rd.qIPSL1_precip, rd.tIPSL1_precip, rd.uIPSL1_precip, rd.vIPSL1_precip # (10230, 3, 10, 17), ...
-zIPSL2_temp, qIPSL2_temp, tIPSL2_temp, uIPSL2_temp, vIPSL2_temp = rd.zIPSL2_temp, rd.qIPSL2_temp, rd.tIPSL2_temp, rd.uIPSL2_temp, rd.vIPSL2_temp # (10813, 3, 10, 17), ...
-zIPSL2_precip, qIPSL2_precip, tIPSL2_precip, uIPSL2_precip, vIPSL2_precip = rd.zIPSL2_precip, rd.qIPSL2_precip, rd.tIPSL2_precip, rd.uIPSL2_precip, rd.vIPSL2_precip # (9444, 3, 10, 17), ...
-zIPSL3_temp, qIPSL3_temp, tIPSL3_temp, uIPSL3_temp, vIPSL3_temp = rd.zIPSL3_temp, rd.qIPSL3_temp, rd.tIPSL3_temp, rd.uIPSL3_temp, rd.vIPSL3_temp # (10885, 3, 10, 17), ...
-zIPSL3_precip, qIPSL3_precip, tIPSL3_precip, uIPSL3_precip, vIPSL3_precip = rd.zIPSL3_precip, rd.qIPSL3_precip, rd.tIPSL3_precip, rd.uIPSL3_precip, rd.vIPSL3_precip # (10894, 3, 10, 17), ...
-
-zMIROC1_temp, qMIROC1_temp, tMIROC1_temp, uMIROC1_temp, vMIROC1_temp = rd.zMIROC1_temp, rd.qMIROC1_temp, rd.tMIROC1_temp, rd.uMIROC1_temp, rd.vMIROC1_temp # (10570, 3, 10, 17), ...
-zMIROC1_precip, qMIROC1_precip, tMIROC1_precip, uMIROC1_precip, vMIROC1_precip = rd.zMIROC1_precip, rd.qMIROC1_precip, rd.tMIROC1_precip, rd.uMIROC1_precip, rd.vMIROC1_precip # (10230, 3, 10, 17), ...
-zMIROC2_temp, qMIROC2_temp, tMIROC2_temp, uMIROC2_temp, vMIROC2_temp = rd.zMIROC2_temp, rd.qMIROC2_temp, rd.tMIROC2_temp, rd.uMIROC2_temp, rd.vMIROC2_temp # (10813, 3, 10, 17), ...
-zMIROC2_precip, qMIROC2_precip, tMIROC2_precip, uMIROC2_precip, vMIROC2_precip = rd.zMIROC2_precip, rd.qMIROC2_precip, rd.tMIROC2_precip, rd.uMIROC2_precip, rd.vMIROC2_precip # (9444, 3, 10, 17), ...
-zMIROC3_temp, qMIROC3_temp, tMIROC3_temp, uMIROC3_temp, vMIROC3_temp = rd.zMIROC3_temp, rd.qMIROC3_temp, rd.tMIROC3_temp, rd.uMIROC3_temp, rd.vMIROC3_temp # (10885, 3, 10, 17), ...
-zMIROC3_precip, qMIROC3_precip, tMIROC3_precip, uMIROC3_precip, vMIROC3_precip = rd.zMIROC3_precip, rd.qMIROC3_precip, rd.tMIROC3_precip, rd.uMIROC3_precip, rd.vMIROC3_precip # (10894, 3, 10, 17), ...
-
 tmeanWRF_GFDL1, tmeanWRF_IPSL1, tmeanWRF_MIROC1 = rd.tmeanWRF_GFDL1, rd.tmeanWRF_IPSL1, rd.tmeanWRF_MIROC1 # (10570, 68, 158), (10570, 68, 158), (10570, 68, 158)
 tmeanWRF_GFDL2, tmeanWRF_IPSL2, tmeanWRF_MIROC2 = rd.tmeanWRF_GFDL2, rd.tmeanWRF_IPSL2, rd.tmeanWRF_MIROC2 # (10813, 68, 158), (10813, 68, 158), (10813, 68, 158)
 tmeanWRF_GFDL3, tmeanWRF_IPSL3, tmeanWRF_MIROC3 = rd.tmeanWRF_GFDL3, rd.tmeanWRF_IPSL3, rd.tmeanWRF_MIROC3 # (10885, 68, 158), (10885, 68, 158), (10885, 68, 158)
@@ -68,30 +47,30 @@ precipTimeWRF_train, precipWRF_train = precipTimeWRF[:div], precipWRF[:div] # (9
 precipTimeWRF_test, precipWRF_test = precipTimeWRF[div:], precipWRF[div:] # (3641,), (3641, 68, 158))
 
 # GCMs temperature data (for testing)
-GFDL1data_temp = [zGFDL1_temp, qGFDL1_temp, tGFDL1_temp, uGFDL1_temp, vGFDL1_temp] # (5, 10570, 10, 17, 3)
-IPSL1data_temp = [zIPSL1_temp, qIPSL1_temp, tIPSL1_temp, uIPSL1_temp, vIPSL1_temp] # (5, 10570, 10, 17, 3)
-MIROC1data_temp = [zMIROC1_temp, qMIROC1_temp, tMIROC1_temp, uMIROC1_temp, vMIROC1_temp] # (5, 10570, 10, 17, 3)
+GFDL1data_temp = [rd.zGFDL1_temp, rd.qGFDL1_temp, rd.tGFDL1_temp, rd.uGFDL1_temp, rd.vGFDL1_temp] # (5, 10570, 10, 17, 3)
+IPSL1data_temp = [rd.zIPSL1_temp, rd.qIPSL1_temp, rd.tIPSL1_temp, rd.uIPSL1_temp, rd.vIPSL1_temp] # (5, 10570, 10, 17, 3)
+MIROC1data_temp = [rd.zMIROC1_temp, rd.qMIROC1_temp, rd.tMIROC1_temp, rd.uMIROC1_temp, rd.vMIROC1_temp] # (5, 10570, 10, 17, 3)
 
-GFDL2data_temp = [zGFDL2_temp, qGFDL2_temp, tGFDL2_temp, uGFDL2_temp, vGFDL2_temp] # (5, 10813, 10, 17, 3)
-IPSL2data_temp = [zIPSL2_temp, qIPSL2_temp, tIPSL2_temp, uIPSL2_temp, vIPSL2_temp] # (5, 10813, 10, 17, 3)
-MIROC2data_temp = [zMIROC2_temp, qMIROC2_temp, tMIROC2_temp, uMIROC2_temp, vMIROC2_temp] # (5, 10813, 10, 17, 3)
+GFDL2data_temp = [rd.zGFDL2_temp, rd.qGFDL2_temp, rd.tGFDL2_temp, rd.uGFDL2_temp, rd.vGFDL2_temp] # (5, 10813, 10, 17, 3)
+IPSL2data_temp = [rd.zIPSL2_temp, rd.qIPSL2_temp, rd.tIPSL2_temp, rd.uIPSL2_temp, rd.vIPSL2_temp] # (5, 10813, 10, 17, 3)
+MIROC2data_temp = [rd.zMIROC2_temp, rd.qMIROC2_temp, rd.tMIROC2_temp, rd.uMIROC2_temp, rd.vMIROC2_temp] # (5, 10813, 10, 17, 3)
 
-GFDL3data_temp = [zGFDL3_temp, qGFDL3_temp, tGFDL3_temp, uGFDL3_temp, vGFDL3_temp] # (5, 10885, 10, 17, 3)
-IPSL3data_temp = [zIPSL3_temp, qIPSL3_temp, tIPSL3_temp, uIPSL3_temp, vIPSL3_temp] # (5, 10885, 10, 17, 3)
-MIROC3data_temp = [zMIROC3_temp, qMIROC3_temp, tMIROC3_temp, uMIROC3_temp, vMIROC3_temp] # (5, 10885, 10, 17, 3)
+GFDL3data_temp = [rd.zGFDL3_temp, rd.qGFDL3_temp, rd.tGFDL3_temp, rd.uGFDL3_temp, rd.vGFDL3_temp] # (5, 10885, 10, 17, 3)
+IPSL3data_temp = [rd.zIPSL3_temp, rd.qIPSL3_temp, rd.tIPSL3_temp, rd.uIPSL3_temp, rd.vIPSL3_temp] # (5, 10885, 10, 17, 3)
+MIROC3data_temp = [rd.zMIROC3_temp, rd.qMIROC3_temp, rd.tMIROC3_temp, rd.uMIROC3_temp, rd.vMIROC3_temp] # (5, 10885, 10, 17, 3)
 
 # GCMs precipitation data (for testing)
-GFDL1data_precip = [zGFDL1_precip, qGFDL1_precip, tGFDL1_precip, uGFDL1_precip, vGFDL1_precip] # (5, 10230, 10, 17, 3)
-IPSL1data_precip = [zIPSL1_precip, qIPSL1_precip, tIPSL1_precip, uIPSL1_precip, vIPSL1_precip] # (5, 10230, 10, 17, 3)
-MIROC1data_precip = [zMIROC1_precip, qMIROC1_precip, tMIROC1_precip, uMIROC1_precip, vMIROC1_precip] # (5, 10230, 10, 17, 3)
+GFDL1data_precip = [rd.zGFDL1_precip, rd.qGFDL1_precip, rd.tGFDL1_precip, rd.uGFDL1_precip, rd.vGFDL1_precip] # (5, 10230, 10, 17, 3)
+IPSL1data_precip = [rd.zIPSL1_precip, rd.qIPSL1_precip, rd.tIPSL1_precip, rd.uIPSL1_precip, rd.vIPSL1_precip] # (5, 10230, 10, 17, 3)
+MIROC1data_precip = [rd.zMIROC1_precip, rd.qMIROC1_precip, rd.tMIROC1_precip, rd.uMIROC1_precip, rd.vMIROC1_precip] # (5, 10230, 10, 17, 3)
 
-GFDL2data_precip = [zGFDL2_precip, qGFDL2_precip, tGFDL2_precip, uGFDL2_precip, vGFDL2_precip] # (5, 9444, 10, 17, 3)
-IPSL2data_precip = [zIPSL2_precip, qIPSL2_precip, tIPSL2_precip, uIPSL2_precip, vIPSL2_precip] # (5, 9444, 10, 17, 3)
-MIROC2data_precip = [zMIROC2_precip, qMIROC2_precip, tMIROC2_precip, uMIROC2_precip, vMIROC2_precip] # (5, 9444, 10, 17, 3)
+GFDL2data_precip = [rd.zGFDL2_precip, rd.qGFDL2_precip, rd.tGFDL2_precip, rd.uGFDL2_precip, rd.vGFDL2_precip] # (5, 9444, 10, 17, 3)
+IPSL2data_precip = [rd.zIPSL2_precip, rd.qIPSL2_precip, rd.tIPSL2_precip, rd.uIPSL2_precip, rd.vIPSL2_precip] # (5, 9444, 10, 17, 3)
+MIROC2data_precip = [rd.zMIROC2_precip, rd.qMIROC2_precip, rd.tMIROC2_precip, rd.uMIROC2_precip, rd.vMIROC2_precip] # (5, 9444, 10, 17, 3)
 
-GFDL3data_precip = [zGFDL3_precip, qGFDL3_precip, tGFDL3_precip, uGFDL3_precip, vGFDL3_precip] # (5, 10894, 10, 17, 3)
-IPSL3data_precip = [zIPSL3_precip, qIPSL3_precip, tIPSL3_precip, uIPSL3_precip, vIPSL3_precip] # (5, 10894, 10, 17, 3)
-MIROC3data_precip = [zMIROC3_precip, qMIROC3_precip, tMIROC3_precip, uMIROC3_precip, vMIROC3_precip] # (5, 10894, 10, 17, 3)
+GFDL3data_precip = [rd.zGFDL3_precip, rd.qGFDL3_precip, rd.tGFDL3_precip, rd.uGFDL3_precip, rd.vGFDL3_precip] # (5, 10894, 10, 17, 3)
+IPSL3data_precip = [rd.zIPSL3_precip, rd.qIPSL3_precip, rd.tIPSL3_precip, rd.uIPSL3_precip, rd.vIPSL3_precip] # (5, 10894, 10, 17, 3)
+MIROC3data_precip = [rd.zMIROC3_precip, rd.qMIROC3_precip, rd.tMIROC3_precip, rd.uMIROC3_precip, rd.vMIROC3_precip] # (5, 10894, 10, 17, 3)
 
 
 
